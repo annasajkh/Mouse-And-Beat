@@ -1,0 +1,144 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scripts/Window.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://button/maximaze.png" type="Texture" id=3]
+[ext_resource path="res://font/NotoSans-Light.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://button/black_cross.png" type="Texture" id=5]
+[ext_resource path="res://button/minimize.png" type="Texture" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 12
+font_data = ExtResource( 4 )
+
+[sub_resource type="SphereMesh" id=2]
+radius = 50.0
+height = 100.0
+
+[sub_resource type="SphereMesh" id=3]
+radius = 50.0
+height = 100.0
+
+[node name="Window" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="TitleBar" type="ColorRect" parent="."]
+margin_left = -260.0
+margin_top = -250.0
+margin_right = 265.0
+margin_bottom = -220.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="icon" type="Sprite" parent="TitleBar"]
+position = Vector2( 15, 16.5 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="TitleBar"]
+margin_left = 32.0
+margin_top = 7.00005
+margin_right = 115.0
+margin_bottom = 24.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Window"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="close" type="ColorRect" parent="TitleBar"]
+margin_left = 477.639
+margin_top = -0.202795
+margin_right = 526.0
+margin_bottom = 29.7972
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="maximaze" type="TextureRect" parent="TitleBar"]
+margin_left = 433.639
+margin_top = -0.202795
+margin_right = 477.639
+margin_bottom = 29.7972
+texture = ExtResource( 3 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="minimaze" type="TextureRect" parent="TitleBar"]
+margin_left = 388.639
+margin_top = 0.0900974
+margin_right = 433.639
+margin_bottom = 30.0901
+texture = ExtResource( 6 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cross" type="Sprite" parent="TitleBar"]
+position = Vector2( 502.393, 14.6779 )
+texture = ExtResource( 5 )
+
+[node name="Border2" type="ColorRect" parent="TitleBar"]
+margin_top = -1.0
+margin_right = 525.0
+color = Color( 0, 0.156863, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Canvas" type="ColorRect" parent="."]
+margin_left = -260.0
+margin_top = -220.0
+margin_right = 266.5
+margin_bottom = 242.308
+color = Color( 1, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Border3" type="ColorRect" parent="Canvas"]
+margin_top = 462.0
+margin_right = 527.0
+margin_bottom = 463.0
+color = Color( 0, 0.156863, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Border" type="ColorRect" parent="Canvas"]
+margin_top = -31.0
+margin_right = 1.0
+margin_bottom = 463.0
+color = Color( 0, 0.156863, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Border1" type="ColorRect" parent="Canvas"]
+margin_left = 526.0
+margin_top = -31.0
+margin_right = 527.0
+margin_bottom = 462.0
+color = Color( 0, 0.156863, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EyeRight" type="MeshInstance2D" parent="."]
+visible = false
+position = Vector2( 140, 0 )
+mesh = SubResource( 2 )
+
+[node name="EyeLeft" type="MeshInstance2D" parent="."]
+visible = false
+position = Vector2( -140, 0 )
+mesh = SubResource( 3 )
+[connection signal="mouse_entered" from="TitleBar/close" to="." method="_on_close_mouse_entered"]
+[connection signal="mouse_exited" from="TitleBar/close" to="." method="_on_close_mouse_exited"]
+[connection signal="mouse_entered" from="TitleBar/minimaze" to="." method="_on_minimaze_mouse_entered"]
+[connection signal="mouse_exited" from="TitleBar/minimaze" to="." method="_on_minimaze_mouse_exited"]
